@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting.Messaging;
 using Appliances.Cooling;
+using System.Threading;
 
 namespace FTE2Module1Demonstration
 {
@@ -39,6 +40,26 @@ namespace FTE2Module1Demonstration
             Console.WriteLine(fan2.ToString());
             string response = Console.ReadLine();
 
+            //Further experiments
+            bool UserActive = true;
+            while (UserActive)
+            {
+                Console.WriteLine("Press 1 to increase fan speed.");
+                Console.WriteLine("Press 2 to decrease fan speed.");
+                response = Console.ReadLine();
+                response = response.ToString();
+                if (response == "1")
+                {
+                    Fan1.IncreaseSpeed();
+                }
+                else if (response == "2")
+                {
+                    Fan1.DecreaseSpeed();
+                }
+                Console.WriteLine(Fan1.ToString());
+                Thread.Sleep(2000);
+                Console.Clear();
+            }
 
         }
     }
